@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateCourse</title>
+</head>
+<body>
+<H1>Create a new course</H1>
+<section>
+    <form th:method="POST" th:action="@{/course/create}">
+        <label for='courseName'>Course Name:</label><input id='courseName' type='text' name='courseName'/><br/>
+        <label for='courseDesc'>Course Description:</label><input id='courseDesc' type='text' name='courseDesc'/><br/>
+        <!--        <label for='TeacherName'>TeacherName:</label><input id="TeacherName" type='text' name='TeacherName'/><br/>-->
+        <!--        <label for='TeacherSurname'>TeacherSurname:</label><input id="TeacherSurname" type='text' name='TeacherSurname'/><br/>-->
+
+        <label for="courseType">Course type:</label>
+        <!--        <input id='courseType' type="text" name='courseType'>--->
+        </br>
+        <select id="courseType" name="courseType">
+            <th:block th:each="type:${courseTypes}">
+                <option th:value="${type}" th:name="${type}" th:text="${type}"></option>
+            </th:block>
+        </select>
+        <label for='TeacherID'>TeacherID:</label>
+        <select id="TeacherID" name='TeacherID'>
+            <th:block th:each="prof:${profs}">
+                <option th:value="${prof.getId()}" th:name="${prof.getName()}" th:text="${prof.getId()}"></option>
+            </th:block>
+        </select></br>
+        <div></div>
+        <input type='submit' value='CreateOrEdit'/>
+    </form>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>TeacherList</title>
+</head>
+<body>
+<section>
+    <table>
+        <tr th:each="teacher:${teachers}">
+            <td th:text="${teacher.getName()}"></td>
+            <td><a th:href="@{'/teachers/edit/{id}'(id=${teacher.getId})}">Edit</a></td>
+            <td><a th:href="@{'/teachers/delete/{id}'(id=${teacher.getId()})}">Delete</a>
+            </td>
+        <tr>
+    </table>
+    <a href=""></a>
+</section>
+</body>
+</html>

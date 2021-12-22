@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Courses List</h1>
+</header>
+<main>
+    <h2>Choose course:</h2>
+    <!--    <input type="radio" name="courseId" value="1"> Веб програмирање<br/>-->
+    <form th:method="get" th:action="@{/course/listStudents} ">
+        <table>
+            <tr th:each="course:${courses}">
+                <td><input type="radio" th:name="kurs" th:value="${course.getCourseId()}"
+                           th:text="${course.getName()}"></td>
+                <td>
+                    <a th:href="@{'/course/edit/{id}'(id=${course.getCourseId()})}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{'/course/delete/{id}'(id=${course.getCourseId()})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <!--        <a th:href="@{/listCourses}" th:value="Submit">Submit</a>-->
+        <input type="submit" value="Submit">
+    </form>
+    <a th:href="@{'/course/next'}">Next</a>
+    <a th:href="@{'/course/back'}">Back</a>
+
+
+    <form th:method="get" th:action="@{/course/add}">
+        <input type="submit" value="CreateCourse">
+    </form>
+    </br>
+    <form th:method="get" th:action="@{/student/Add-Grade}">
+        <input type="submit" value="Grade Student">
+    </form>
+</main>
+</body>
+</html>

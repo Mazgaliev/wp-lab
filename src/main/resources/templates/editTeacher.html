@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>EditTeacher</title>
+</head>
+<body>
+<section>
+    <h1>Edit teacher</h1>
+    <form th:method="POST" th:action="@{/teachers/edit-teacher}">
+        <label for='teacherName'>Course Name:</label><input th:value="(${teacher}!=null?${teacher.getName()}:' ')"
+                                                            id='teacherName' type='text' name='teacherName'/><br/>
+        <label for='teacherSurname'>Teacher Surname:</label><input
+            th:value="(${teacher}!=null?${teacher.getSurname()}:' ')" id='teacherSurname' type='text'
+            name='teacherSurname'/><br/>
+        <!--        <label for='TeacherName'>TeacherName:</label><input id="TeacherName" type='text' name='TeacherName'/><br/>-->
+        <!--        <label for='TeacherSurname'>TeacherSurname:</label><input id="TeacherSurname" type='text' name='TeacherSurname'/><br/>-->
+        <label for='TeacherID'>TeacherID:</label>
+        <select id="TeacherID" name='TeacherID'>
+            <th:block th:each="prof:${teachers}">
+                <option th:selected="${course!= null && course.getTeacher()!=null && prof.getId()==course.getTeacher().getId()}"
+                        th:value="${prof.getId()}" th:name="${prof.getName()}" th:text="${prof.getId()}"></option>
+            </th:block>
+        </select></br>
+        <input type='submit' value='CreateOrEdit'/>
+    </form>
+</section>
+</body>
+</html>

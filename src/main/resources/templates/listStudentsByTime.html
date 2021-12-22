@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Find grades for chosen course after selected timestamp</h1>
+<!--kurs-->
+<form th:method="post" th:action="@{/course/grades}">
+    <label for="course">Course:</label><select id="course" name="course">
+    <option></option>
+    <th:block th:each="course:${courses}">
+        <option th:id="${course.getName()}" th:text="${course.getName()}" th:value="${course.getCourseId()}"></option>
+    </th:block>
+</select>
+    <label for="date">Date:</label><input id="date" name="date" type="datetime-local"></br>
+
+    <button value="submit">Find Grades</button>
+</form>
+<ul>
+    <th:block th:each="gradeStudent:${gradesStudents}">
+        <li th:name="${gradeStudent.getStudent().getName()}"
+            th:text="${gradeStudent.getStudent().getName()} +' '+ ${gradeStudent.getCourse().getName()} +' ' + ${gradeStudent.getGrade()} "></li>
+    </th:block>
+</ul>
+
+</body>
+</html>

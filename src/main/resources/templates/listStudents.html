@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>Add new Student to Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 3px 2px;
+        }
+
+        section {
+            float: left;
+            margin: 0 1.5%;
+            width: 63%;
+        }
+
+        aside {
+            float: right;
+            margin: 0 1.5%;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Student Enrollment - Select the Student </h1>
+</header>
+
+<section>
+    <h2>Select the student to enroll:</h2>
+    <a th:href='@{/student/Add}' type='button'>Create New Student</a> <br/> <br/>
+    <form th:method="POST" th:action="@{StudentEnrollmentSummary}">
+        <th:block th:each="student:${students}">
+            <input type="radio" th:name="std" th:for="std" th:text="${student.getName}"
+                   th:value="${student.getUsername()}+' '+${courseID}"></br>
+        </th:block>
+        <div th:if="${hasError}">
+            <div th:text="${message}"></div>
+        </div>
+        <!--    <input type="radio" name="size" value="petar.petrov"> Петар Петров <br/>-->
+        <br/>
+        <input type="submit" value="Submit">
+        <!--    <a href="/StudentEnrollmentSummary">Submit</a>-->
+    </form>
+</section>
+<aside>
+
+    <table>
+        <tr>
+            <th colspan="2">
+                Your Enrollment Status
+            </th>
+        </tr>
+        <tr>
+            <td><b>Course Id</b></td>
+            <form th:method="POST" th:action="@{listCourses}">
+                <td th:if="${courseID}!=null" th:value="${courseID}" th:text="${courseID}"></td>
+            </form>
+        </tr>
+    </table>
+
+</aside>
+
+
+</body>
+</html>

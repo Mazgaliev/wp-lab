@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Student Courses</title>
+
+</head>
+<body>
+<header>
+    <h1>Students in Course </h1>
+</header>
+<section>
+    <form>
+        <h2 th:text="${student.getUsername()}"></h2>
+
+        <th:block th:each="student:${students}">
+            <li th:text="${student.getName()}"></li>
+        </th:block>
+
+
+
+        <a href="/listCourses">Back</a>
+    </form>
+</section>
+
+</body>
+</html>
